@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var app = require('../app');
+var http = require('http');
+
+var models = require('../models/');
+
+var port = process.env.PORT || '3000';
+app.set('port', port);
+
+var server = http.createServer(app);
+
+models.sequelize.sync().then(function () {
+    server.listen(port, function() {
+        console.log('server is listening on ' + port);
+    });
+});
+
+
+
