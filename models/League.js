@@ -5,5 +5,10 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING
     });
 
+    League.associate = function (models) {
+        League.hasMany(models.Dog, { foreignKey: 'leagueId'});
+        League.hasMany(models.Contest, { foreignKey: 'leagueId'});
+    };
+
     return League;
 };

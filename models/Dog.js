@@ -9,5 +9,10 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING
     });
 
+    Dog.associate = function (models) {
+        Dog.belongsTo(models.League, { foreignKey: 'leagueId'});
+        Dog.belongsToMany(models.Contest, { through: 'ContestDogs', foreignKey: 'dogId'});
+    };
+
     return Dog;
 };
