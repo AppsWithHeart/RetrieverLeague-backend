@@ -5,8 +5,14 @@
 module.exports = function (sequelize, DataTypes) {
 
     var Task = sequelize.define('Task', {
-        name: DataTypes.STRING
+        name: DataTypes.STRING,
+        maximumScore: DataTypes.INTEGER
     });
+
+    Task.associate = function (models) {
+        Task.belongsTo(models.Contest, {foreignKey: 'contestId'});
+        Task.belongsToMany(models.Dog, { through: models.DogTask, foreignKey: 'taskId'});
+    };
 
     return Task;
 };

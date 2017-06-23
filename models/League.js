@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
 
     League.associate = function (models) {
         League.hasMany(models.Dog, { foreignKey: 'leagueId'});
-        League.hasMany(models.Contest, { foreignKey: 'leagueId'});
     };
 
     return League;
