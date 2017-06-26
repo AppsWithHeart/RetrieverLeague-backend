@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
 
     Task.associate = function (models) {
         Task.belongsTo(models.Contest, {foreignKey: 'contestId'});
-        Task.belongsToMany(models.Dog, { through: models.DogTask, foreignKey: 'taskId'});
+        Task.belongsToMany(models.Dog, {through: models.DogTask, foreignKey: 'taskId', as: 'dogs'});
     };
 
     return Task;
