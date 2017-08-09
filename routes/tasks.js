@@ -19,6 +19,7 @@ router.get('/:dogId/:contestId', function (req, res, next) {
         include: [
             {
                 model: models.DogTask,
+                attributes: ["score"],
                 where: {
                     dogId: req.params.dogId
                 },
