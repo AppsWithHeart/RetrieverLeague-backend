@@ -43,7 +43,8 @@ router.get('/:dogId/tasks/:contestId', function (req, res) {
                     model: models.DogTask,
                     attributes: ['score'],
                     as: 'dogTask'
-                }
+                },
+                required: false,
             }
         ]
     })

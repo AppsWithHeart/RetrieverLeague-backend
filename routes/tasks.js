@@ -14,9 +14,16 @@ router.get('/:dogId/:contestId', function (req, res, next) {
 
     models.Task.findAll({
         where: {
-            dogId: req.params.dogId,
-            contestId: req.params.contestId,
-        }
+            contestId: req.params.contestId
+        },
+        include: [
+            {
+                model: models.DogTask,
+                where: {
+                    dogId: req.params.dogId
+                }
+            }
+        ]
     })
         .then(function (tasks) {
             res.json(tasks);
