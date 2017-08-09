@@ -21,7 +21,8 @@ router.get('/:dogId/:contestId', function (req, res, next) {
                 model: models.DogTask,
                 where: {
                     dogId: req.params.dogId
-                }
+                },
+                as: "dogTasks",
             }
         ]
     })
