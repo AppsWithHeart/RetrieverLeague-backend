@@ -36,6 +36,9 @@ router.get('/:dogId/tasks/:contestId', function (req, res) {
             {
                 model: models.Task,
                 as: 'tasks',
+                where: {
+                    contestId: req.params.contestId,
+                },
                 through: {
                     model: models.DogTask,
                     attributes: ['score'],
