@@ -30,4 +30,26 @@ router.get('/', function (req, res) {
         })
 });
 
+router.get('/:dogId', function (req, res) {
+    models.Dog.findById(req.params.dogId, {
+        include: [
+            {
+                model: models.Task,
+                as: 'tasks',
+                through: {
+                    model: models.DogTask,
+                    attributes: ['score'],
+                    as: 'dogTask'
+                }
+            }
+        ]
+    })
+        .then(function (dog) {
+            res.json(dog);
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
+});
+
 module.exports = router;
