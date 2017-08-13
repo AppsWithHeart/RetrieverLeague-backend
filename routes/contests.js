@@ -33,6 +33,7 @@ router.get('/', function (req, res) {
 
 router.get('/:contestId', function (req, res) {
     models.Contest.findById(req.params.contestId, {
+        attributes: ["dogs"],
         include: [
             {
                 model: models.Dog,
