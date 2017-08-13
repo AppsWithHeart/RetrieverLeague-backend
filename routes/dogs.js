@@ -30,6 +30,10 @@ router.get('/', function (req, res) {
         })
 });
 
+router.get('/', function (req, res) {
+
+});
+
 router.get('/:dogId/tasks/:contestId', function (req, res) {
     models.Dog.findById(req.params.dogId, {
         include: [

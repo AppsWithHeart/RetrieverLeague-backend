@@ -31,9 +31,38 @@ router.get('/', function (req, res) {
 
 });
 
-router.get('/:id/league/:leagueId', function (req, res) {
+router.get('/:contestId', function (req, res) {
+    models.Contest.findById(req.params.contestId, {
+        include: [
+            {
+                model: models.Dog,
+                as: 'dogs',
+                through: {
+                    attributes: ['result']
+                },
+                include: [
+                    {
+                        model: models.Task,
+                        as: 'tasks',
+                        through: {
+                            model: models.DogTask,
+                            attributes: ['score'],
+                            as: 'dogTask'
+                        }
+                    }
+                ]
+            }
+        ]
+    }).then(function (contest) {
+        res.json(contest);
+    }).catch(function (error) {
+        res.status(500).json(error);
+    })
+});
+
+router.get('/:contestId/league/:leagueId', function (req, res) {
     console.log(req.params.leagueId);
-    models.Contest.findById(req.params.id, {
+    models.Contest.findById(req.params.contestId, {
         include: [
             {
                 model: models.Dog,
