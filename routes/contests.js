@@ -32,7 +32,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:contestId', function (req, res) {
-    models.Dog.findById(req.params.contestId, {
+    models.Contest.findById(req.params.contestId, {
         attributes: ["name"],
         include: [
             {
@@ -67,25 +67,9 @@ router.get('/test/:contestId', function (req, res) {
             contestId: req.params.contestId
         },
         attributes: ["result"],
-        include: [
-            {
-                model: models.Dog,
-                as: 'dog',
-                include: [
-                    {
-                        model: models.Task,
-                        as: 'tasks',
-                        through: {
-                            model: models.DogTask,
-                            attributes: ['score'],
-                            as: 'dogTask'
-                        }
-                    }
-                ]
-            }
-        ]
-    }).then(function (contest) {
-        res.json(contest);
+
+    }).then(function (contests) {
+        res.json(contests);
     }).catch(function (error) {
         res.status(500).json(error);
     })
