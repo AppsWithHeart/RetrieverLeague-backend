@@ -12,23 +12,25 @@ var router = express.Router();
 
 router.get('/:dogId/:contestId', function (req, res, next) {
 
-    models.Task.findAll({
-        where: {
-            contestId: req.params.contestId
-        },
+    models.Dog.findById(req.params.dogId, {
+        attributes: [],
         include: [
             {
-                model: models.DogTask,
-                attributes: ["score"],
+                model: models.Task,
+                as: 'tasks',
                 where: {
-                    dogId: req.params.dogId
+                    contestId: req.params.contestId,
                 },
-                as: "dogTasks",
+                through: {
+                    model: models.DogTask,
+                    attributes: ['score'],
+                    as: 'dogTask'
+                }
             }
         ]
-    })
-        .then(function (tasks) {
-            res.json(tasks);
+        .then(function (dog) {
+            //return tasks only
+            res.json(dog.tasks);
         })
         .catch(function (err) {
             res.status(500).json(err);
