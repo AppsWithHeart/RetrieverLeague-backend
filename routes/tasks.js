@@ -28,6 +28,7 @@ router.get('/:dogId/:contestId', function (req, res, next) {
                 }
             }
         ]
+    })
         .then(function (dog) {
             //return tasks only
             res.json(dog.tasks);
