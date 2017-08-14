@@ -45,6 +45,9 @@ router.get('/:contestId', function (req, res) {
                     {
                         model: models.Task,
                         as: 'tasks',
+                        where: {
+                            contestId: req.params.contestId,
+                        },
                         through: {
                             model: models.DogTask,
                             attributes: ['score'],
@@ -67,7 +70,23 @@ router.get('/test/:contestId', function (req, res) {
             contestId: req.params.contestId
         },
         attributes: ["result"],
-
+        include: [
+            {
+                model: models.Dog,
+                as: 'dog',
+                include: [
+                    {
+                        model: models.Task,
+                        as: 'tasks',
+                        through: {
+                            model: models.DogTask,
+                            attributes: ['score'],
+                            as: 'dogTask'
+                        }
+                    }
+                ]
+            }
+        ]
     }).then(function (contests) {
         res.json(contests);
     }).catch(function (error) {
