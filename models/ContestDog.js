@@ -8,5 +8,8 @@ module.exports = function (sequelize, DataTypes) {
         result: DataTypes.INTEGER
     });
 
+    ContestDog.associate = function (models) {
+        ContestDog.belongsTo(models.Dog, { as: 'dog', foreignKey: 'dogId' });
+    };
     return ContestDog;
 };
