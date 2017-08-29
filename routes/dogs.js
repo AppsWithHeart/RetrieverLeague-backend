@@ -56,11 +56,11 @@ router.get('/:dogId/tasks/:contestId', function (req, res) {
         })
 });
 
-router.get('/count', function (req, res) {
+router.get('/count/all', function (req, res) {
 
     models.Dog.count()
         .then(function(count) {
-            res.send(count);
+            res.json({count: count});
         })
         .catch(function (err) {
             res.status(500).json(err);

@@ -118,4 +118,16 @@ router.get('/:contestId/league/:leagueId', function (req, res) {
 
 });
 
+router.get('/count/all', function (req, res) {
+
+    models.Contest.count()
+        .then(function(count) {
+            res.json({count: count});
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
+
+});
+
 module.exports = router;
