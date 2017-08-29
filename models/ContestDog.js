@@ -10,5 +10,8 @@ module.exports = function (sequelize, DataTypes) {
         timestamps: false
     });
 
+    ContestDog.associate = function (models) {
+        ContestDog.belongsTo(models.Dog, { as: 'dog', foreignKey: 'dogId' });
+    };
     return ContestDog;
 };

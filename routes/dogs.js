@@ -30,11 +30,37 @@ router.get('/', function (req, res) {
         })
 });
 
+router.get('/:dogId/tasks/:contestId', function (req, res) {
+    models.Dog.findById(req.params.dogId, {
+        include: [
+            {
+                model: models.Task,
+                as: 'tasks',
+                where: {
+                    contestId: req.params.contestId,
+                },
+                through: {
+                    model: models.DogTask,
+                    attributes: ['score'],
+                    as: 'dogTask'
+                },
+                required: false,
+            }
+        ]
+    })
+        .then(function (dog) {
+            res.json(dog);
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
+});
+
 router.get('/count', function (req, res) {
 
     models.Dog.count()
         .then(function(count) {
-            res.json(count);
+            res.send(count);
         })
         .catch(function (err) {
             res.status(500).json(err);
