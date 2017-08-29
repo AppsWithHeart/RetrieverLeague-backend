@@ -30,4 +30,16 @@ router.get('/', function (req, res) {
         })
 });
 
+router.get('/count', function (req, res) {
+
+    models.Dog.count()
+        .then(function(count) {
+            res.json(count);
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
+
+});
+
 module.exports = router;

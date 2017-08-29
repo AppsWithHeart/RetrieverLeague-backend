@@ -1,13 +1,10 @@
 {
   "development": {
-    "username": "ujwhckbqztmijt",
-    "password": "61ce7363edb3e78c5070bfae1e7084342f6d7cb43d815da56f427eae643b4861",
-    "database": "d3422727dlhk21",
-    "host": "ec2-54-228-255-234.eu-west-1.compute.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": true
-    }
+    "username": "postgres",
+    "password": "umba",
+    "database": "retriever_league",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "test": {
     "username": "ujwhckbqztmijt",

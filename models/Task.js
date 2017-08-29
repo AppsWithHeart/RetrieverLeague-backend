@@ -7,6 +7,8 @@ module.exports = function (sequelize, DataTypes) {
     var Task = sequelize.define('Task', {
         name: DataTypes.STRING,
         maximumScore: DataTypes.INTEGER
+    }, {
+        timestamps: false
     });
 
     Task.associate = function (models) {
