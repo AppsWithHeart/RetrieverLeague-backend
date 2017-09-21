@@ -31,9 +31,14 @@ router.get('/:dogId/:contestId', function (req, res, next) {
     })
         .then(function (dog) {
             //return tasks only
-            res.json(dog.tasks);
+            if (dog) {
+                res.json(dog.tasks);
+            } else {
+                res.json([]);
+            }
         })
         .catch(function (err) {
+            console.log(err);
             res.status(500).json(err);
         })
 
