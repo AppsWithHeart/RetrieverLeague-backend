@@ -20,7 +20,8 @@ router.get('/', function (req, res) {
                     as: 'dogTask'
                 }
             }
-        ]
+        ],
+        order: ["createdAt", "DESC"]
     })
         .then(function (dogs) {
             res.json(dogs);
