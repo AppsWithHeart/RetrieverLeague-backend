@@ -21,7 +21,9 @@ router.get('/', function (req, res) {
                 }
             }
         ],
-        order: ["createdAt", "DESC"]
+        order: [
+            ["createdAt", "DESC"]
+        ]
     })
         .then(function (dogs) {
             res.json(dogs);
