@@ -68,4 +68,20 @@ router.get('/count/all', function (req, res) {
 
 });
 
+router.post('/', function(req, res) {
+    Dog.create({
+        name: req.body.name,
+        breed: req.body.breed,
+        leagueId: req.body.leagueId,
+        dateOfBirth: req.body.dateOfBirth,
+        ownerName: req.body.ownerName
+    })
+        .then(function (dog) {
+        res.json(dog);
+    })
+        .catch(function (err){
+            res.status(500).json(err);
+        })
+});
+
 module.exports = router;
