@@ -68,8 +68,8 @@ router.get('/count/all', function (req, res) {
 
 });
 
-router.post('/', function(req, res) {
-    Dog.create({
+router.post('/', function (req, res) {
+    models.Dog.create({
         name: req.body.name,
         breed: req.body.breed,
         leagueId: req.body.leagueId,
@@ -77,9 +77,9 @@ router.post('/', function(req, res) {
         ownerName: req.body.ownerName
     })
         .then(function (dog) {
-        res.json(dog);
-    })
-        .catch(function (err){
+            res.json(dog);
+        })
+        .catch(function (err) {
             res.status(500).json(err);
         })
 });
