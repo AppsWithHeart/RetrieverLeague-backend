@@ -20,6 +20,9 @@ router.get('/', function (req, res) {
                     as: 'dogTask'
                 }
             }
+        ],
+        order: [
+            ["createdAt", "DESC"]
         ]
     })
         .then(function (dogs) {
@@ -66,6 +69,22 @@ router.get('/count/all', function (req, res) {
             res.status(500).json(err);
         })
 
+});
+
+router.post('/', function (req, res) {
+    models.Dog.create({
+        name: req.body.name,
+        breed: req.body.breed,
+        leagueId: req.body.leagueId,
+        dateOfBirth: req.body.dateOfBirth,
+        ownerName: req.body.ownerName
+    })
+        .then(function (dog) {
+            res.json(dog);
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
 });
 
 module.exports = router;
