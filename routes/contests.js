@@ -18,7 +18,13 @@ router.get('/', function (req, res) {
                 as: 'dogs',
                 through: {
                     attributes: ['result']
-                }
+                },
+                include: [
+                    {
+                        model: models.League,
+                        as: 'league',
+                    }
+                ]
             }
         ]
     })
