@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Dog.associate = function (models) {
-        Dog.belongsTo(models.League, { foreignKey: 'leagueId'});
+        Dog.belongsTo(models.League, { foreignKey: 'leagueId', as: 'league'});
         Dog.belongsToMany(models.Contest, { through: models.ContestDog, foreignKey: 'dogId', as: 'contests'});
         Dog.belongsToMany(models.Task, { through: models.DogTask, foreignKey: 'dogId', as: 'tasks'});
     };
