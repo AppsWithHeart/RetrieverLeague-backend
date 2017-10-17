@@ -12,7 +12,9 @@ var router = express.Router();
 router.get('/', function (req, res) {
 
     models.Contest.findAll({
-        exclude: ["createdAt", "updatedAt"],
+        attributes: {
+            exclude:  ["createdAt", "updatedAt"]
+        },
         include: [
             {
                 model: models.Dog,
@@ -20,7 +22,9 @@ router.get('/', function (req, res) {
                 through: {
                     attributes: ['result']
                 },
-                exclude: ["createdAt", "updatedAt", "leagueId"],
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "leagueId"]
+                },
                 include: [
                     {
                         model: models.League,
