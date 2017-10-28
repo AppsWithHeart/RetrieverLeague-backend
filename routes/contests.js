@@ -139,7 +139,20 @@ router.get('/count/all', function (req, res) {
         .catch(function (err) {
             res.status(500).json(err);
         })
+});
 
+router.post('/', function (req, res) {
+    models.Contest.create({
+        name: req.body.name,
+        date: req.body.date,
+        location: req.body.location
+    })
+        .then(function (contest) {
+            res.json(contest);
+        })
+        .catch(function (err) {
+            res.status(500).json(err);
+        })
 });
 
 module.exports = router;
