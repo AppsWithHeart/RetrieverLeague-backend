@@ -141,6 +141,23 @@ router.get('/count/all', function (req, res) {
         })
 });
 
+router.get('/tasks/:id', function(req, res) {
+    models.Contest.findById(req.params.id, {
+        include: [
+            {
+                model: models.Task,
+                as: 'tasks'
+            }
+        ]
+    })
+        .then(function (contests) {
+            res.json(contests);
+        })
+        .catch(function (error) {
+            res.status(500).json(error);
+        });
+});
+
 router.post('/', function (req, res) {
     models.Contest.create({
         name: req.body.name,
