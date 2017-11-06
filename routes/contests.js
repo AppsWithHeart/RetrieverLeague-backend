@@ -165,9 +165,25 @@ router.post('/', function (req, res) {
         location: req.body.location
     })
         .then(function (contest) {
-            res.json(contest);
+            var tasks = req.body.tasks;
+            const promises = tasks.map(function(task) {
+                return models.Task.create({
+                    name: task.name,
+                    maximumScore: task.maximumScore,
+                    contestId: contest.id
+                })
+            });
+            Promise.all(promises)
+                .then(function (allTasks) {
+                    res.json(contest);
+                })
+                .catch(function (err) {
+                    console.log("Error", err);
+                    res.status(500).json(err);
+                });
         })
         .catch(function (err) {
+            console.log("Error later", err);
             res.status(500).json(err);
         })
 });
