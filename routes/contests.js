@@ -178,12 +178,10 @@ router.post('/', function (req, res) {
                     res.json(contest);
                 })
                 .catch(function (err) {
-                    console.log("Error", err);
                     res.status(500).json(err);
                 });
         })
         .catch(function (err) {
-            console.log("Error later", err);
             res.status(500).json(err);
         })
 });
