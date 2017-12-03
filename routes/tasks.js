@@ -44,4 +44,18 @@ router.get('/:dogId/:contestId', function (req, res, next) {
 
 });
 
+router.get('/', function (req, res, next) {
+    models.Task.findAll({
+        where: {
+            contestId: req.query.contestId,
+        }
+    })
+        .then(function (tasks) {
+            res.json(tasks);
+        })
+        .catch(function (error) {
+            res.status(500).json(error);
+        });
+});
+
 module.exports = router;
