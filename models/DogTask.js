@@ -6,8 +6,6 @@ module.exports = function (sequelize, DataTypes) {
 
     var DogTask = sequelize.define('DogTask', {
         score: DataTypes.INTEGER
-    }, {
-        timestamps: false
     });
 
     return DogTask;

@@ -58,4 +58,14 @@ router.get('/', function (req, res, next) {
         });
 });
 
+router.post('/dog', function (req, res, next) {
+    models.DogTask.bulkCreate(req.body.tasks)
+        .then(function (tasks) {
+            res.json(tasks);
+        })
+        .catch(function (error) {
+            res.status(500).json(error);
+        });
+});
+
 module.exports = router;
