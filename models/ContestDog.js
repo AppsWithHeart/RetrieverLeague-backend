@@ -6,8 +6,6 @@ module.exports = function (sequelize, DataTypes) {
 
     var ContestDog = sequelize.define('ContestDog', {
         result: DataTypes.INTEGER
-    }, {
-        timestamps: false
     });
 
     ContestDog.associate = function (models) {

@@ -61,7 +61,17 @@ router.get('/', function (req, res, next) {
 router.post('/dog', function (req, res, next) {
     models.DogTask.bulkCreate(req.body.tasks)
         .then(function (tasks) {
-            res.json(tasks);
+            models.ContestDog.create({
+                contestId: req.body.contestId,
+                result: req.body.result,
+                dogId: req.body.dogId,
+            })
+                .then(function (contestDog) {
+                    res.json(tasks);
+                })
+                .catch(function (error) {
+                    res.status(500).json(error);
+                });
         })
         .catch(function (error) {
             res.status(500).json(error);
