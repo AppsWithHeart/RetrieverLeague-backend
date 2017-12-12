@@ -9,7 +9,15 @@ var _ = require('lodash');
 var router = express.Router();
 
 router.get('/', function (req, res) {
+
+    var whereQuery = {};
+    if (req.query.leagueId) {
+        whereQuery = {
+            leagueId: req.query.leagueId,
+        };
+    }
     models.Dog.findAll({
+        where: whereQuery,
         include: [
             {
                 model: models.Task,
