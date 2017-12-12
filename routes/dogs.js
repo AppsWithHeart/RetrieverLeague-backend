@@ -27,6 +27,10 @@ router.get('/', function (req, res) {
                     attributes: ['result'],
                     as: 'dogContests'
                 }
+            },
+            {
+                model: models.League,
+                as: 'league',
             }
         ],
         order: [
