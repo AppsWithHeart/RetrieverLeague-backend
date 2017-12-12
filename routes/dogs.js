@@ -14,18 +14,18 @@ router.get('/', function (req, res) {
     if (req.query.leagueId) {
         whereQuery = {
             leagueId: req.query.leagueId,
-        };
+        }
     }
     models.Dog.findAll({
         where: whereQuery,
         include: [
             {
-                model: models.Task,
-                as: 'tasks',
+                model: models.Contest,
+                as: 'contests',
                 through: {
-                    model: models.DogTask,
-                    attributes: ['score'],
-                    as: 'dogTask'
+                    model: models.DogContest,
+                    attributes: ['result'],
+                    as: 'dogContests'
                 }
             }
         ],
