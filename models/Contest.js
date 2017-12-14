@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Contest.associate = function (models) {
-        Contest.belongsToMany(models.Dog, { through: models.ContestDog, foreignKey: 'contestId', as: 'contests'});
+        Contest.belongsToMany(models.Dog, { through: models.ContestDog, foreignKey: 'contestId', as: 'dogs'});
         Contest.belongsToMany(models.League, { through: 'ContestLeague', foreignKey: 'contestId', as: 'leagues'});
         Contest.hasMany(models.Task, { foreignKey: 'contestId', as: 'tasks'});
         Contest.hasMany(models.ContestDog, {foreignKey: 'contestId', as: 'dogContests'});
