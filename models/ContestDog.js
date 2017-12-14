@@ -5,7 +5,7 @@
 module.exports = function (sequelize, DataTypes) {
 
     var ContestDog = sequelize.define('ContestDog', {
-        result: DataTypes.INTEGER
+        result: DataTypes.FLOAT
     });
 
     ContestDog.associate = function (models) {
