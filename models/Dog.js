@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     var Dog = sequelize.define("Dog", {
         name:  {
             type: DataTypes.STRING,
-            unique: true,
+            unique: true
         },
         dateOfBirth: DataTypes.DATE,
         breed: DataTypes.STRING,
