@@ -6,7 +6,10 @@
 module.exports = function(sequelize, DataTypes) {
 
     var Dog = sequelize.define("Dog", {
-        name: DataTypes.STRING,
+        name:  {
+            type: DataTypes.STRING,
+            unique: true,
+        },
         dateOfBirth: DataTypes.DATE,
         breed: DataTypes.STRING,
         ownerName: DataTypes.STRING
